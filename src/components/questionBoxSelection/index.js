@@ -1,7 +1,7 @@
 import React from 'react'
 /* import {usePesquisa} from '../../context/pesquisa' */
 
-const QuestionBoxSelection = ({pergunta, answerValue, setAnswerValue, options}) => {
+const QuestionBoxSelection = ({pergunta, context, setContext, options}) => {
     const showOptions = options.map((elemento)=>
         <>
             <option value={elemento}>{elemento}</option>
@@ -9,13 +9,16 @@ const QuestionBoxSelection = ({pergunta, answerValue, setAnswerValue, options}) 
     )
 
     function handleChange(event){
-        setAnswerValue(event.target.value)
+        const copyContext = Object.assign({},context)
+        copyContext.pergunta = pergunta
+        copyContext.resposta = event.target.value
+        setContext(copyContext)
     }
 
     return(
         <div className='question-selection'>
             <label>{pergunta}
-                <select value={answerValue} onChange={handleChange}>
+                <select value={context.resposta} onChange={handleChange}>
                     {showOptions}
                 </select>
             </label><br/>

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const QuestionBoxRadio = ({pergunta, opcoes, opcaoSelecionada, setOpcaoSelecionada}) => {
+const QuestionBoxRadio = ({pergunta, opcoes, context, setContext}) => {
     const opt = opcoes
     const radiosButton = opt.map((option)=>
         <div className='opcoes'>
@@ -9,7 +9,7 @@ const QuestionBoxRadio = ({pergunta, opcoes, opcaoSelecionada, setOpcaoSeleciona
                         type='radio'
                         name='teste'
                         value={option}
-                        checked={opcaoSelecionada === option}
+                        checked={context.opcaoSelecionada === option}
                         onChange={handleChange}
                         />
                     {option}
@@ -18,7 +18,10 @@ const QuestionBoxRadio = ({pergunta, opcoes, opcaoSelecionada, setOpcaoSeleciona
     )
 
     function handleChange(event){
-        setOpcaoSelecionada(event.target.value)
+        const copyContext = Object({},context)
+        copyContext.pergunta = pergunta
+        copyContext.opcaoSelecionada = event.target.value
+        setContext(copyContext)
     }
 
     return(

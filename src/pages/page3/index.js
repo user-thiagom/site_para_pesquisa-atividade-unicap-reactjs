@@ -2,11 +2,11 @@ import React from 'react'
 
 import QuestionBoxSelection from '../../components/questionBoxSelection'
 import Button from '../../components/button'
-import { usePesquisaPag3 } from '../../context/pesquisaPag3'
+import { usePesquisa } from '../../context/pesquisaPag1'
 
 
 const Page3 = ()=>{
-    const {answerValue, setAnswerValue} = usePesquisaPag3()
+    const {pergunta5Selecao,setPergunta5Selecao} = usePesquisa()
 
     function handleNextButton(){
         console.log('Próxima Página')
@@ -18,7 +18,7 @@ const Page3 = ()=>{
 
     return(
         <div className='pagina3'>
-            <QuestionBoxSelection pergunta='Qual o seu suco de fruta favorito?' answerValue={answerValue} setAnswerValue={setAnswerValue} options={['Cajá','Maracujá','Pitanga','Abacaxi','Laranja']}/>
+            <QuestionBoxSelection pergunta='Qual o seu suco de fruta favorito?' context={pergunta5Selecao} setContext={setPergunta5Selecao} options={['Cajá','Maracujá','Pitanga','Abacaxi','Laranja']}/>
             <Button tipo='button' nome='Finalizar' handleButton={handleNextButton}/>
             <Button tipo='button' nome='Voltar página' handleButton={handlePreviousButton}/>
         </div>

@@ -1,16 +1,19 @@
 import React from 'react'
 /* import {usePesquisa} from '../../context/pesquisa' */
 
-const QuestionBox = ({pergunta, answerValue, setAnswerValue}) => {
+const QuestionBox = ({pergunta, context, setContext}) => {
 
     function handleChange(event){
-        setAnswerValue(event.target.value)
+        const copyContext = Object.assign({},context)
+        copyContext.pergunta = pergunta
+        copyContext.resposta = event.target.value
+        setContext(copyContext)
     }
 
     return(
         <div>
             <label>{pergunta}</label><br/>
-            <textarea value={answerValue} onChange={handleChange}></textarea>
+            <textarea value={context.resposta} onChange={handleChange}></textarea>
         </div>
     )
 }

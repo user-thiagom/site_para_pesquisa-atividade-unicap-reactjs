@@ -1,24 +1,55 @@
 import React, {createContext, useState, useContext, useEffect} from 'react'
 
-const PesquisaPag1Context = createContext()
+const PesquisaContext = createContext()
 
-export default function PesquisaPag1Provider({children}){
-    const [inputValue,setInputValue] = useState('Theguera')
-    const [answerValue,setAnswerValue] = useState('Não sei kkk')
+export default function PesquisaProvider({children}){
+    const [inputValue,setInputValue] = useState('')
+    const [pergunta1Aberta,setPergunta1Aberta] = useState({
+        pergunta: '',
+        resposta: ''
+    })
+    const [pergunta2Radio,setPergunta2Radio] = useState({
+        pergunta: '',
+        opcaoSelecionada: ''
+    })
+    const [pergunta3Aberta,setPergunta3Aberta] = useState({
+        pergunta: '',
+        resposta: ''
+    })
+    const [pergunta4Aberta,setPergunta4Aberta] = useState({
+        pergunta: '',
+        resposta: ''
+    })
+    const [pergunta5Selecao,setPergunta5Selecao] = useState({
+        pergunta: '',
+        resposta: ''
+    })
     
     useEffect(()=>{
 
     },[]) 
 
     return(
-        <PesquisaPag1Context.Provider value={{inputValue,setInputValue, answerValue,setAnswerValue}}>
+        <PesquisaContext.Provider value={{
+            inputValue,setInputValue, pergunta1Aberta,setPergunta1Aberta,
+            pergunta2Radio,setPergunta2Radio,pergunta3Aberta,setPergunta3Aberta,
+            pergunta4Aberta,setPergunta4Aberta,pergunta5Selecao,setPergunta5Selecao
+        }}>
             {children}
-        </PesquisaPag1Context.Provider>
+        </PesquisaContext.Provider>
     )
 }
 
-export function usePesquisaPag1(){
-    const context = useContext(PesquisaPag1Context)
-    const { inputValue, setInputValue, answerValue, setAnswerValue } = context
-    return { inputValue, setInputValue, answerValue, setAnswerValue }
+export function usePesquisa(){
+    const context = useContext(PesquisaContext)
+    const {
+        inputValue,setInputValue, pergunta1Aberta,setPergunta1Aberta,
+        pergunta2Radio,setPergunta2Radio,pergunta3Aberta,setPergunta3Aberta,
+        pergunta4Aberta,setPergunta4Aberta,pergunta5Selecao,setPergunta5Selecao
+    } = context
+    return {
+        inputValue,setInputValue, pergunta1Aberta,setPergunta1Aberta,
+        pergunta2Radio,setPergunta2Radio,pergunta3Aberta,setPergunta3Aberta,
+        pergunta4Aberta,setPergunta4Aberta,pergunta5Selecao,setPergunta5Selecao
+    }
 }
