@@ -9,7 +9,7 @@ const QuestionBoxRadio = ({pergunta, opcoes, context, setContext}) => {
                         type='radio'
                         name='teste'
                         value={option}
-                        checked={context.opcaoSelecionada === option}
+                        checked={context.resposta === option}
                         onChange={handleChange}
                         />
                     {option}
@@ -20,7 +20,7 @@ const QuestionBoxRadio = ({pergunta, opcoes, context, setContext}) => {
     function handleChange(event){
         const copyContext = Object({},context)
         copyContext.pergunta = pergunta
-        copyContext.opcaoSelecionada = event.target.value
+        copyContext.resposta = event.target.value
         setContext(copyContext)
     }
 

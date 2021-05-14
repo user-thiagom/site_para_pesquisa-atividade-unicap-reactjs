@@ -10,7 +10,7 @@ export default function PesquisaProvider({children}){
     })
     const [pergunta2Radio,setPergunta2Radio] = useState({
         pergunta: '',
-        opcaoSelecionada: ''
+        resposta: ''
     })
     const [pergunta3Aberta,setPergunta3Aberta] = useState({
         pergunta: '',
@@ -25,6 +25,20 @@ export default function PesquisaProvider({children}){
         resposta: ''
     })
     
+    const resetObj = {
+        pergunta: '',
+        resposta: ''
+    }
+
+    const reset = () => {
+        setInputValue('')
+        setPergunta1Aberta(resetObj)
+        setPergunta2Radio(resetObj)
+        setPergunta3Aberta(resetObj)
+        setPergunta4Aberta(resetObj)
+        setPergunta5Selecao(resetObj)
+    }
+
     useEffect(()=>{
 
     },[]) 
@@ -33,7 +47,7 @@ export default function PesquisaProvider({children}){
         <PesquisaContext.Provider value={{
             inputValue,setInputValue, pergunta1Aberta,setPergunta1Aberta,
             pergunta2Radio,setPergunta2Radio,pergunta3Aberta,setPergunta3Aberta,
-            pergunta4Aberta,setPergunta4Aberta,pergunta5Selecao,setPergunta5Selecao
+            pergunta4Aberta,setPergunta4Aberta,pergunta5Selecao,setPergunta5Selecao, reset
         }}>
             {children}
         </PesquisaContext.Provider>
@@ -45,11 +59,11 @@ export function usePesquisa(){
     const {
         inputValue,setInputValue, pergunta1Aberta,setPergunta1Aberta,
         pergunta2Radio,setPergunta2Radio,pergunta3Aberta,setPergunta3Aberta,
-        pergunta4Aberta,setPergunta4Aberta,pergunta5Selecao,setPergunta5Selecao
+        pergunta4Aberta,setPergunta4Aberta,pergunta5Selecao,setPergunta5Selecao,reset
     } = context
     return {
         inputValue,setInputValue, pergunta1Aberta,setPergunta1Aberta,
         pergunta2Radio,setPergunta2Radio,pergunta3Aberta,setPergunta3Aberta,
-        pergunta4Aberta,setPergunta4Aberta,pergunta5Selecao,setPergunta5Selecao
+        pergunta4Aberta,setPergunta4Aberta,pergunta5Selecao,setPergunta5Selecao,reset
     }
 }
